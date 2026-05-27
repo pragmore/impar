@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impar — Respondé DMs con IA que sí entiende tu negocio</title>
+    <meta
+        name="description"
+        content="Impar conecta tu Instagram y responde mensajes automáticamente con IA, manteniendo el tono de tu marca y convirtiendo conversaciones en ventas."
+    >
+    <style>
+        :root {
+            --bg: #000612;
+            --bg-secondary: #00062A;
+            --border: rgba(234, 241, 255, 0.12);
+            --primary: #1761F6;
+            --primary-mid: #1B4CAE;
+            --text: #EAF1FF;
+            --muted: rgba(234, 241, 255, 0.72);
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(23, 97, 246, 0.22), transparent 35%),
+                linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            padding: 24px 0;
+        }
+
+        .site-header .container,
+        .hero-grid,
+        .hero-actions,
+        .comparison,
+        .feature-grid,
+        .audience-grid,
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .site-header .container,
+        .hero-grid,
+        .comparison {
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(23, 97, 246, 0.25);
+        }
+
+        .button,
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(23, 97, 246, 0.35);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .button:hover,
+        .button-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 48px 0 72px;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(23, 97, 246, 0.14);
+            border: 1px solid rgba(23, 97, 246, 0.24);
+            color: #b9d1ff;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+            margin-bottom: 20px;
+        }
+
+        .hero-copy > p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .hero-points,
+        .comparison-card ul,
+        .onboarding ol {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .hero-visual,
+        .comparison-card,
+        .feature-card,
+        .onboarding,
+        .audience-card,
+        .cta-box {
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-visual {
+            width: min(420px, 100%);
+            padding: 28px;
+        }
+
+        .logo-panel {
+            padding: 26px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(23, 97, 246, 0.16), rgba(23, 97, 246, 0.06));
+            display: grid;
+            place-items: center;
+            margin-bottom: 22px;
+        }
+
+        .logo-panel img {
+            width: min(220px, 100%);
+            height: auto;
+            display: block;
+        }
+
+        .stat-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .stat {
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .stat span,
+        .feature-card p,
+        .audience-card p,
+        .comparison-card p,
+        .cta-box p,
+        .section-head p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 34px 0;
+        }
+
+        .section-head {
+            max-width: 720px;
+            margin-bottom: 24px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-bottom: 12px;
+            letter-spacing: -0.04em;
+        }
+
+        .comparison,
+        .feature-grid,
+        .audience-grid {
+            flex-wrap: wrap;
+        }
+
+        .comparison-card,
+        .onboarding,
+        .cta-box {
+            padding: 28px;
+        }
+
+        .comparison-card,
+        .feature-card,
+        .audience-card {
+            flex: 1 1 300px;
+        }
+
+        .feature-card,
+        .audience-card {
+            padding: 24px;
+        }
+
+        .comparison-card h3,
+        .feature-card h3,
+        .audience-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card strong {
+            display: inline-flex;
+            margin-bottom: 12px;
+            color: #aecdff;
+            font-size: 0.92rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .cta-box {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        footer {
+            padding: 32px 0 42px;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .footer-links {
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            padding: 8px 0;
+        }
+
+        @media (max-width: 860px) {
+            .hero-grid,
+            .site-header .container,
+            .cta-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding-top: 24px;
+            }
+
+            .container {
+                width: min(1120px, calc(100% - 32px));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="#">
+                <img src="logo.png" alt="Logo de Impar">
+                <span>imp.ar</span>
+            </a>
+            <a class="button-secondary" href="#cta">Pedir acceso</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">AI teammate para Instagram</span>
+                    <h1>Conversaciones reales. Automatizadas.</h1>
+                    <p>
+                        Impar transforma tu Instagram en un canal de ventas y atención impulsado por IA.
+                        Conecta tu cuenta, enseña cómo habla tu negocio y deja que la IA responda DMs
+                        de forma natural, sin parecer un bot.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button" href="#cta">Quiero automatizar mis DMs</a>
+                        <a class="button-secondary" href="#diferencial">Ver diferencial</a>
+                    </div>
+                    <ul class="hero-points">
+                        <li>Respuestas automáticas con tono de marca.</li>
+                        <li>Aprendizaje desde FAQs y chats reales.</li>
+                        <li>Leads, intención de compra y escalado a humano.</li>
+                    </ul>
+                </div>
+
+                <aside class="hero-visual">
+                    <div class="logo-panel">
+                        <img src="logo.png" alt="Isotipo de Impar">
+                    </div>
+                    <div class="stat-list">
+                        <div class="stat">
+                            <strong>No necesitás diseñar conversaciones</strong>
+                            <span>La IA conversa con contexto y mantiene una experiencia simple.</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Setup mínimo</strong>
+                            <span>Conectás Instagram, cargás datos básicos del negocio y empezás en minutos.</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Supervisado por humano</strong>
+                            <span>Podés aprobar respuestas, intervenir y mantener cercanía humana.</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="diferencial">
+            <div class="container">
+                <div class="section-head">
+                    <h2>No es un chatbot con flujos. Es un asistente conversacional.</h2>
+                    <p>
+                        Impar está pensado para ventas y atención por Instagram sin la complejidad de las
+                        automatizaciones tradicionales. Menos configuración manual, más contexto y mejor tono.
+                    </p>
+                </div>
+                <div class="comparison">
+                    <article class="comparison-card">
+                        <h3>Automatización tradicional</h3>
+                        <ul>
+                            <li>Flows y nodos.</li>
+                            <li>Lógica manual para cada escenario.</li>
+                            <li>Configuración pesada.</li>
+                            <li>Experiencia robótica.</li>
+                        </ul>
+                    </article>
+                    <article class="comparison-card">
+                        <h3>Impar</h3>
+                        <ul>
+                            <li>Conversación natural.</li>
+                            <li>Setup mínimo.</li>
+                            <li>IA contextual.</li>
+                            <li>Aprendizaje desde conversaciones reales.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <h2>Funcionalidades iniciales</h2>
+                    <p>
+                        Lo necesario para responder mejor, vender más y no perder mensajes por demora.
+                    </p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <strong>IA conversacional</strong>
+                        <h3>Responde con contexto</h3>
+                        <p>Contesta preguntas frecuentes, interpreta intención y sostiene el hilo del chat.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Tono personalizado</strong>
+                        <h3>Habla como tu marca</h3>
+                        <p>Usa el estilo, expresiones y forma de vender propias del negocio.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Aprendizaje real</strong>
+                        <h3>Mejora con uso</h3>
+                        <p>Toma como referencia FAQs, respuestas aprobadas y conversaciones anteriores.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Captura comercial</strong>
+                        <h3>Detecta leads</h3>
+                        <p>Marca intención de compra, registra datos útiles y prioriza oportunidades.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Escalado humano</strong>
+                        <h3>Deriva cuando hace falta</h3>
+                        <p>Pasa el caso a un operador si el contexto requiere intervención humana.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Historial centralizado</strong>
+                        <h3>Todo el contexto junto</h3>
+                        <p>Permite revisar chats, respuestas sugeridas y decisiones del equipo.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <h2>Onboarding ideal</h2>
+                    <p>Simple, corto y pensado para que el valor aparezca rápido.</p>
+                </div>
+                <div class="onboarding">
+                    <ol>
+                        <li><strong>Conectás tu Instagram.</strong></li>
+                        <li><strong>Impar aprende de tu negocio.</strong></li>
+                        <li><strong>La IA responde tus DMs automáticamente.</strong></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <h2>Pensado para negocios donde Instagram ya mueve ventas</h2>
+                    <p>E-commerce, turismo y marcas con alto volumen de consultas por DM.</p>
+                </div>
+                <div class="audience-grid">
+                    <article class="audience-card">
+                        <h3>E-commerce</h3>
+                        <p>Responde sobre productos, stock, envíos y medios de pago.</p>
+                    </article>
+                    <article class="audience-card">
+                        <h3>Turismo</h3>
+                        <p>Atiende fechas, disponibilidad, paquetes y seguimiento de interesados.</p>
+                    </article>
+                    <article class="audience-card">
+                        <h3>Marcas con volumen</h3>
+                        <p>Ordena la atención y acelera respuestas sin depender solo del equipo humano.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <div class="container">
+                <div class="cta-box">
+                    <div>
+                        <h2>Respondé DMs con IA que sí entiende tu negocio</h2>
+                        <p>
+                            Impar convierte Instagram en un canal de atención y ventas con respuestas humanas,
+                            setup en minutos y una experiencia simple de verdad.
+                        </p>
+                    </div>
+                    <a class="button" href="mailto:impar@pragmore.com">Solicitar demo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacidad.html">Política de Privacidad</a>
+                <a href="terminos.html">Términos y Condiciones</a>
+                <a href="eliminar-datos.html">Eliminar datos</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
